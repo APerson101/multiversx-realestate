@@ -1,0 +1,62 @@
+{
+    "name": "realestate",
+    "steps": [
+        {
+            "step": "setState",
+            "accounts": {
+                "address:owner": {
+                    "nonce": "1",
+                    "balance": "0"
+                }
+            },
+            "newAddresses": [
+                {
+                    "creatorAddress": "address:owner",
+                    "creatorNonce": "1",
+                    "newAddress": "sc:empty"
+                }
+            ]
+        },
+        {
+            "step": "scDeploy",
+            "id": "deploy",
+            "tx": {
+                "from": "address:owner",
+                "contractCode": "file:../output/realestate.wasm",
+                "arguments": [
+                    "1,000",
+                    "[110, 97, 109, 101]",
+                    "[97, 100, 100, 114, 101, 115, 115]",
+                    "[108, 111, 110, 103, 105, 116, 117, 100, 101]",
+                    "[108, 97, 116, 105, 116, 117, 100, 101]"
+                ],
+                "gasLimit": "5,000,000",
+                "gasPrice": "0"
+            },
+            "expect": {
+                "out": [],
+                "status": "",
+                "logs": [],
+                "gas": "*",
+                "refund": "*"
+            }
+        },
+        {
+            "step": "checkState",
+            "accounts": {
+                "sc:realestate": {
+                    "nonce": "0",
+                    "balance": "0",
+                    "storage": {
+                        "str:quantity": "1,000",
+                        "str:name": "[110, 97, 109, 101]",
+                        "str:address": "[97, 100, 100, 114, 101, 115, 115]",
+                        "str:longitude": "[108, 111, 110, 103, 105, 116, 117, 100, 101]",
+                        "str:latitude": "[108, 97, 116, 105, 116, 117, 100, 101]"
+                    },
+                    "code": "file:../output/crowdfunding.wasm"
+                }
+            }
+        }
+    ]
+}
